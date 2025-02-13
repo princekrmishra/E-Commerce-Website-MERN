@@ -8,6 +8,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import { IoMdGitCompare } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa6";
 import Tooltip from '@mui/material/Tooltip';
+import Navigation from './Navigation'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -22,7 +23,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const Header = () => {
     return (
-        <header>
+        <header className='bg-white'>
             <div className='top-strip py-2 border-t-[1px] border-gray-250 border-b-[1px]'>
                 <div className='container'>
                     <div className='flex items-center justify-between'>
@@ -35,11 +36,11 @@ const Header = () => {
                         <ul className='flex items-center gap-3'>
 
                             <li className='list-none'>
-                                <Link to='/help-center' className='text-[13px] link font-[500] transition'>Help Center{" "}</Link>
+                                <Link to='/help-center' className='text-[13px] link font-[500] transition hover:text-blue-500'>Help Center{" "}</Link>
                             </li>
 
                             <li className='list-none'>
-                                <Link to='/order-tracking' className='text-[13px] link font-[500] transition'>Order Tracking{" "}</Link>
+                                <Link to='/order-tracking' className='text-[13px] link font-[500] transition hover:text-blue-500'>Order Tracking{" "}</Link>
                             </li>
 
                         </ul>
@@ -49,10 +50,10 @@ const Header = () => {
                 </div>
             </div>
 
-            <div className='header py-3'>
+            <div className='header py-4 border-b-[1px] border-gray-250 '>
                 <div className='container flex items-center justify-between'>
                     <div className='col1 w-[25%] '>
-                    <Link to={"/"}><img src="/logo.jpg"></img></Link>
+                    <Link to={"/"}><img src="/logo.png"></img></Link>
                     </div>
                     <div className='col2 w-[45%]'>
                     <Search/>
@@ -61,7 +62,8 @@ const Header = () => {
                     <div className='col3 w-[30%] flex items-center pl-5'>
                         <ul className='flex items-center gap-3 w-full justify-end'>
                             <li className='list-none'>
-                                <Link to="/login" className='link transition text-[15px] font-[500]'>Login</Link> |&nbsp;<Link to="/register" className='link transition text-[15px] font-[500]' >Register</Link> 
+                                <Link to="/login" className='link transition text-[15px] font-[500] hover:text-red-500'>Login</Link> |&nbsp;
+                                <Link to="/register" className='link transition text-[15px] font-[500] hover:text-red-500' >Register</Link> 
                             </li>
                             
                             <li>
@@ -102,6 +104,11 @@ const Header = () => {
                 </div>
 
             </div>
+
+        
+        <Navigation/>
+
+
 
         </header>
     
