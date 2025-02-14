@@ -17,234 +17,235 @@ const CategoryPanel = (props) => {
 
   const openSubmenu = (index) => {
     if(submenuIndex===index){
-        setsubmenuIndex(null);
+      setsubmenuIndex(null);
     }
     else{
-        setsubmenuIndex(index);
+      setsubmenuIndex(index);
     }
   };
 
   const openInnerSubmenu = (index) => {
     if(innersubmenuIndex===index){
-        setinnersubmenuIndex(null);
+      setinnersubmenuIndex(null);
     }
     else{
-        setinnersubmenuIndex(index);
-    }
+      setinnersubmenuIndex(index);
+    } 
   };
+
+  const categories = [
+    {
+      name: "Fashion",
+      subcategories: [
+        {
+          name: "Clothing",
+          innerSubcategories: ["Men", "Women", "Kids"]
+        },
+        {
+          name: "Footwear",
+          innerSubcategories: ["Casual Shoes", "Sports Shoes", "Sandals"]
+        }
+      ]
+    },
+    {
+      name: "Electronics",
+      subcategories: [
+        {
+          name: "Mobiles",
+          innerSubcategories: ["Smartphones", "Feature Phones"]
+        },
+        {
+          name: "Laptops",
+          innerSubcategories: ["Gaming Laptops", "Business Laptops"]
+        }
+      ]
+    },
+    {
+      name: "Home & Kitchen",
+      subcategories: [
+        {
+          name: "Furniture",
+          innerSubcategories: ["Sofas", "Beds", "Tables"]
+        },
+        {
+          name: "Appliances",
+          innerSubcategories: ["Refrigerators", "Microwaves", "Washing Machines"]
+        }
+      ]
+    },
+    {
+      name: "Accessories",
+      subcategories: [
+        {
+          name: "Watches",
+          innerSubcategories: ["Smartwatches",
+            "Luxury Watches",
+            "Casual Watches"
+            ]
+        },
+        {
+          name: "Bags & Wallets",
+          innerSubcategories: ["Handbags", "Wallents", "Backpacks "]
+        },
+        {
+          name: "Sunglasses",
+          innerSubcategories: ["Aviators", "Wayfares", "Round Frames"]
+        }
+      ]
+    },
+    {
+      name: "Books & Stationery",
+      subcategories: [
+        {
+          name: "Fiction",
+          innerSubcategories: ["Mystery", "Sci-fi", "Romance"]
+        },
+        {
+          name: "Educational",
+          innerSubcategories: ["School Books", "College Books", "Competitive Exams"]
+        }
+      ]
+    },
+    {
+      name: "Sports & Fitness",
+      subcategories: [
+        {
+          name: "Gym Equipment",
+          innerSubcategories: ["Dumbbells", "Resistance Bands", "Yoga Mats"]
+        },
+        {
+          name: "Outdoor Sports",
+          innerSubcategories: ["Football", "Basketball", "Cricket"]
+        }
+      ]
+    },
+    {
+      name: "Home & Kitchen",
+      subcategories: [
+        {
+          name: "Furniture",
+          innerSubcategories: ["Sofas", "Beds", "Tables"]
+        },
+        {
+          name: "Appliances",
+          innerSubcategories: ["Refrigerators", "Microwaves", "Washing Machines"]
+        }
+      ]
+    },
+    {
+      name: "Beauty & Personal Care",
+      subcategories: [
+        {
+          name: "Skincare",
+          innerSubcategories: ["Face Wash", "Moisturizers", "Sunscreens"]
+        },
+        {
+          name: "Hair Care",
+          innerSubcategories: ["Shampoos", "Conditioners", "Hair Dryers"]
+        }
+      ]
+    },
+    {
+      name: "Grocery",
+      subcategories: [
+        {
+          name: "Dairy Products",
+          innerSubcategories: ["Milk", "Cheese", "Yogurt"]
+        },
+        {
+          name: "Snacks",
+          innerSubcategories: ["Chips", "Chocolates", "Cookies"]
+        }
+      ]
+    },
+    {
+      name: "Home & Kitchen",
+      subcategories: [
+        {
+          name: "Furniture",
+          innerSubcategories: ["Sofas", "Beds", "Tables"]
+        },
+        {
+          name: "Appliances",
+          innerSubcategories: ["Refrigerators", "Microwaves", "Washing Machines"]
+        }
+      ]
+    }
+  ];
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" className="categoryPanel">
-      
+
       <h3 className="p-3 text-[16px] font-[500] flex items-center justify-between">
         Shop By Categories
-        <IoCloseSharp
-          onClick={toggleDrawer(false)}
-          className="cursor-pointer text-[20px]"
-        />
+        <IoCloseSharp 
+        onClick={toggleDrawer(false)} 
+        className="cursor-pointer text-[20px]" />
       </h3>
 
       <div className="scroll">
         <ul className="w-full">
-          {/* Main Category */}
-          <li className="list-none flex items-center relative flex-col">
-            <Link 
-                to='/' 
-                className='w-full'>
-                <Button className="w-full text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]">
-                    Fashion
-                </Button>
-            </Link>
+          {categories.map((category, index) => (
+            <li key={index} className="list-none flex items-center relative flex-col">
+              
+              <Button className="w-full text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]" onClick={() => 
+                openSubmenu(index)}>
+                {category.name}
+              </Button>
 
-            {
-                submenuIndex === 0 ? 
-                <TiMinus
-                    className="absolute top-[10px] right-[15px] cursor-pointer"
-                    onClick={() => openSubmenu(0)}
-                />
-            :
-                <FaPlus
-                    className="absolute top-[10px] right-[15px] cursor-pointer"
-                    onClick={() => openSubmenu(0)}
-                />
-            }
-            
+              {submenuIndex === index ? (
+                <TiMinus 
+                className="absolute top-[10px] right-[15px] cursor-pointer" onClick={() => openSubmenu(index)} />
+              ) : (
+                <FaPlus 
+                className="absolute top-[10px] right-[15px] cursor-pointer" onClick={() => openSubmenu(index)} />
+              )}
 
-            
+              {submenuIndex === index && (
+                <ul className="submenu w-full pl-3 bg-white shadow-md">
+                  {category.subcategories.map((subcat, subIndex) => (
+                    <li key={subIndex} 
+                    className="list-none relative">
+                      <Button 
+                      className="w-full text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]" 
+                      onClick={() => openInnerSubmenu(subIndex)}>
+                        {subcat.name}
+                      </Button>
+                      
+                      {innersubmenuIndex === subIndex ? (
+                        <TiMinus className="absolute top-[10px] right-[15px] cursor-pointer" 
+                        onClick={() => openInnerSubmenu(subIndex)} />
+                      ) : (
+                        <FaPlus className="absolute top-[10px] right-[15px] cursor-pointer" 
+                        onClick={() => openInnerSubmenu(subIndex)} />
+                      )}
 
-            {/* Submenu (Only shown when submenuIndex === 0) */}
-            {submenuIndex === 0 && (
-              <ul className="submenu w-full pl-3 bg-white shadow-md">
-                <li className="list-none relative">
-                    <Link 
-                        to='/' 
-                        className='w-full'>
-                        <Button className="w-full text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]">
-                            Apparel
-                        </Button>
-                    </Link>
-
-                    {
-                innersubmenuIndex === 0 ? 
-                <TiMinus
-                    className="absolute top-[10px] right-[15px] cursor-pointer"
-                    onClick={() => openInnerSubmenu(0)}
-                />
-            :
-                <FaPlus
-                    className="absolute top-[10px] right-[15px] cursor-pointer"
-                    onClick={() => openInnerSubmenu(0)}
-                />
-            }
-
-                  
-
-                  {/* Inner Submenu (Only shown when innersubmenuIndex === 0) */}
-                  {innersubmenuIndex === 0 && (
-                    <ul className="inner_submenu w-full pl-3 bg-white shadow-md">
-                      <li className="list-none relative mb-1">
-                        <Link
-                          to="/"
-                          className="link w-full text-left !justify-start !px-3 transition text-[14px]"
-                        >
-                          Smart Tablet
-                        </Link>
-                      </li>
-                      <li className="list-none relative mb-1">
-                        <Link
-                          to="/"
-                          className="link w-full text-left !justify-start !px-3 transition text-[14px]"
-                        >
-                          Crepe T-Shirt
-                        </Link>
-                      </li>
-                      <li className="list-none relative mb-1">
-                        <Link
-                          to="/"
-                          className="link w-full text-left !justify-start !px-3 transition text-[14px]"
-                        >
-                          Leather Watch
-                        </Link>
-                      </li>
-                      <li className="list-none relative mb-1">
-                        <Link
-                          to="/"
-                          className="link w-full text-left !justify-start !px-3 transition text-[14px]"
-                        >
-                          Rolling Diamond
-                        </Link>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-              </ul>
-            )}
-          </li>
-
-          <li className="list-none flex items-center relative flex-col">
-            <Link 
-                to='/' 
-                className='w-full'>
-                <Button className="w-full text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]">
-                    Fashion
-                </Button>
-            </Link>
-
-            {
-                submenuIndex === 1 ? 
-                <TiMinus
-                    className="absolute top-[10px] right-[15px] cursor-pointer"
-                    onClick={() => openSubmenu(1)}
-                />
-            :
-                <FaPlus
-                    className="absolute top-[10px] right-[15px] cursor-pointer"
-                    onClick={() => openSubmenu(1)}
-                />
-            }
-            
-
-            
-
-            {/* Submenu (Only shown when submenuIndex === 0) */}
-            {submenuIndex === 1 && (
-              <ul className="submenu w-full pl-3 bg-white shadow-md">
-                <li className="list-none relative">
-                    <Link 
-                        to='/' 
-                        className='w-full'>
-                        <Button className="w-full text-left !justify-start !px-3 !text-[rgba(0,0,0,0.8)]">
-                            Apparel
-                        </Button>
-                    </Link>
-
-                    {
-                innersubmenuIndex === 1 ? 
-                <TiMinus
-                    className="absolute top-[10px] right-[15px] cursor-pointer"
-                    onClick={() => openInnerSubmenu(1)}
-                />
-            :
-                <FaPlus
-                    className="absolute top-[10px] right-[15px] cursor-pointer"
-                    onClick={() => openInnerSubmenu(1)}
-                />
-            }
-
-                  
-
-                  {/* Inner Submenu (Only shown when innersubmenuIndex === 0) */}
-                  {innersubmenuIndex === 1 && (
-                    <ul className="inner_submenu w-full pl-3 bg-white shadow-md">
-                      <li className="list-none relative mb-1">
-                        <Link
-                          to="/"
-                          className="link w-full text-left !justify-start !px-3 transition text-[14px]"
-                        >
-                          Smart Tablet
-                        </Link>
-                      </li>
-                      <li className="list-none relative mb-1">
-                        <Link
-                          to="/"
-                          className="link w-full text-left !justify-start !px-3 transition text-[14px]"
-                        >
-                          Crepe T-Shirt
-                        </Link>
-                      </li>
-                      <li className="list-none relative mb-1">
-                        <Link
-                          to="/"
-                          className="link w-full text-left !justify-start !px-3 transition text-[14px]"
-                        >
-                          Leather Watch
-                        </Link>
-                      </li>
-                      <li className="list-none relative mb-1">
-                        <Link
-                          to="/"
-                          className="link w-full text-left !justify-start !px-3 transition text-[14px]"
-                        >
-                          Rolling Diamond
-                        </Link>
-                      </li>
-                    </ul>
-                  )}
-                </li>
-              </ul>
-            )}
-          </li>
+                      {innersubmenuIndex === subIndex && (
+                        <ul className="inner_submenu w-full pl-3 bg-white shadow-md">
+                          {subcat.innerSubcategories.map((innerItem, innerIndex) => (
+                            <li key={innerIndex} className="list-none relative mb-1">
+                              <Link to="/" className="link w-full text-left !justify-start !px-3 transition text-[14px]">
+                                {innerItem}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
         </ul>
       </div>
     </Box>
   );
 
   return (
-    <>
-      <Drawer open={props.isOpenCatPanel} onClose={toggleDrawer(false)}>
-        {DrawerList}
-      </Drawer>
-    </>
+    <Drawer open={props.isOpenCatPanel} onClose={toggleDrawer(false)}>
+      {DrawerList}
+    </Drawer>
   );
 };
 
