@@ -18,29 +18,7 @@ import { Navigation } from 'swiper/modules';
             modules={[Navigation]} 
             className="sliderHome"
         >
-
         
-        <SwiperSlide>
-            <div className="item overflow-hidden rounded-[10px]">
-                <img src="https://drive.google.com/file/d/1-z8AMcVKcOFU1dhjKi08CUzwlq53AAOv/view?usp=sharing" alt="banner" className='w-full h-[600px]' />
-            </div>
-        </SwiperSlide>
-        
-
-        <SwiperSlide>
-            <div className="item overflow-hidden rounded-[10px]">
-                <img src="https://drive.google.com/file/d/10EFIDbMJy9zx8hSY1u340ggkn5TUBb1J/view?usp=sharing" alt="banner" className='w-full h-[600px]' />
-            </div>
-        </SwiperSlide>
-
-        <SwiperSlide>
-            <div className="item overflow-hidden rounded-[10px]">
-                <img 
-                    src="https://drive.google.com/file/d/1dOXQPvdidcsLxAoeg3u4wm-2i_A62jUY/view?usp=sharing" 
-                    alt="banner" 
-                    className='w-full h-[600px]' />
-            </div>
-        </SwiperSlide>
 
         <SwiperSlide>
             <div className="item overflow-hidden rounded-[10px]">
@@ -57,6 +35,12 @@ import { Navigation } from 'swiper/modules';
                     src="https://s3.envato.com/files/260793076/01.png" 
                     alt="banner" 
                     className='w-full h-[600px]' /> 
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div className="item overflow-hidden rounded-[10px]">
+                <img src="https://www.shutterstock.com/shutterstock/photos/2234699085/display_1500/stock-vector-mega-sale-banner-promotion-template-with-d-megaphone-on-red-background-special-deal-label-design-2234699085.jpg" alt="banner" className='w-full h-[600px]' />
             </div>
         </SwiperSlide>
 
