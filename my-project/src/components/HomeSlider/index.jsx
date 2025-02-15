@@ -22,14 +22,14 @@ import { Navigation } from 'swiper/modules';
         
         <SwiperSlide>
             <div className="item overflow-hidden rounded-[10px]">
-                <img src="../src/assets/slider1.png" alt="banner" className='w-full h-[680px]' />
+                <img src="../src/assets/slider1.png" alt="banner" className='w-full h-[600px]' />
             </div>
         </SwiperSlide>
         
 
         <SwiperSlide>
             <div className="item overflow-hidden rounded-[10px]">
-                <img src="../src/assets/slider2.png" alt="banner" className='w-full h-[680px]' />
+                <img src="../src/assets/slider2.png" alt="banner" className='w-full h-[600px]' />
             </div>
         </SwiperSlide>
 
@@ -38,7 +38,7 @@ import { Navigation } from 'swiper/modules';
                 <img 
                     src="../src/assets/slider3.png" 
                     alt="banner" 
-                    className='w-full h-[680px]' />
+                    className='w-full h-[600px]' />
             </div>
         </SwiperSlide>
 
@@ -47,7 +47,7 @@ import { Navigation } from 'swiper/modules';
                 <img 
                     src="https://res.cloudinary.com/duqoh8gf5/image/upload/v1739165904/1739165903970_file_1734525014348_NewProject_7.jpg" 
                     alt="banner" 
-                    className='w-full h-[680px]'/> 
+                    className='w-full h-[600px]'/> 
             </div>
         </SwiperSlide>
 
@@ -56,7 +56,7 @@ import { Navigation } from 'swiper/modules';
                 <img 
                     src="https://s3.envato.com/files/260793076/01.png" 
                     alt="banner" 
-                    className='w-full h-[680px]' /> 
+                    className='w-full h-[600px]' /> 
             </div>
         </SwiperSlide>
 
