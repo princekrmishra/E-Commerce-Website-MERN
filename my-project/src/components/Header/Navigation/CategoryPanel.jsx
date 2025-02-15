@@ -120,19 +120,6 @@ const CategoryPanel = (props) => {
       ]
     },
     {
-      name: "Home & Kitchen",
-      subcategories: [
-        {
-          name: "Furniture",
-          innerSubcategories: ["Sofas", "Beds", "Tables"]
-        },
-        {
-          name: "Appliances",
-          innerSubcategories: ["Refrigerators", "Microwaves", "Washing Machines"]
-        }
-      ]
-    },
-    {
       name: "Beauty & Personal Care",
       subcategories: [
         {
@@ -158,19 +145,7 @@ const CategoryPanel = (props) => {
         }
       ]
     },
-    {
-      name: "Home & Kitchen",
-      subcategories: [
-        {
-          name: "Furniture",
-          innerSubcategories: ["Sofas", "Beds", "Tables"]
-        },
-        {
-          name: "Appliances",
-          innerSubcategories: ["Refrigerators", "Microwaves", "Washing Machines"]
-        }
-      ]
-    }
+    
   ];
 
   const DrawerList = (
