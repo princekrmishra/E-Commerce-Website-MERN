@@ -22,21 +22,21 @@ import { Navigation } from 'swiper/modules';
         
         <SwiperSlide>
             <div className="item overflow-hidden rounded-[10px]">
-                <img src="../src/assets/slider1.png" alt="banner" className='w-full h-[600px]' />
+                <img src="https://drive.google.com/file/d/1-z8AMcVKcOFU1dhjKi08CUzwlq53AAOv/view?usp=sharing" alt="banner" className='w-full h-[600px]' />
             </div>
         </SwiperSlide>
         
 
         <SwiperSlide>
             <div className="item overflow-hidden rounded-[10px]">
-                <img src="../src/assets/slider2.png" alt="banner" className='w-full h-[600px]' />
+                <img src="https://drive.google.com/file/d/10EFIDbMJy9zx8hSY1u340ggkn5TUBb1J/view?usp=sharing" alt="banner" className='w-full h-[600px]' />
             </div>
         </SwiperSlide>
 
         <SwiperSlide>
             <div className="item overflow-hidden rounded-[10px]">
                 <img 
-                    src="../src/assets/slider3.png" 
+                    src="https://drive.google.com/file/d/1dOXQPvdidcsLxAoeg3u4wm-2i_A62jUY/view?usp=sharing" 
                     alt="banner" 
                     className='w-full h-[600px]' />
             </div>
