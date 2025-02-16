@@ -3,6 +3,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
+import slider1 from '../../assets/slider1.png';
+import slider2 from '../../assets/slider2.png';
+import slider3 from '../../assets/slider3.png';
 
 // import required modules
 import { Navigation, Autoplay } from 'swiper/modules';
@@ -28,6 +31,33 @@ import { Navigation, Autoplay } from 'swiper/modules';
             <div className="item overflow-hidden rounded-[10px]">
                 <img 
                     src="https://res.cloudinary.com/duqoh8gf5/image/upload/v1739165904/1739165903970_file_1734525014348_NewProject_7.jpg" 
+                    alt="banner" 
+                    className='w-full h-[600px]'/> 
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div className="item overflow-hidden rounded-[10px]">
+                <img 
+                    src={slider1} 
+                    alt="banner" 
+                    className='w-full h-[600px]'/> 
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div className="item overflow-hidden rounded-[10px]">
+                <img 
+                    src={slider2} 
+                    alt="banner" 
+                    className='w-full h-[600px]'/> 
+            </div>
+        </SwiperSlide>
+
+        <SwiperSlide>
+            <div className="item overflow-hidden rounded-[10px]">
+                <img 
+                    src={slider3} 
                     alt="banner" 
                     className='w-full h-[600px]'/> 
             </div>

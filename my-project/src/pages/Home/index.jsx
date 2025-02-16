@@ -3,6 +3,7 @@ import HomeSlider from "../../components/HomeSlider";
 import HomeCatSlider from "../../components/HomeCatSlider";
 import { FaShippingFast } from "react-icons/fa";
 import { LuIndianRupee } from "react-icons/lu";
+import AdBannerSlider from "../../components/AdBannerSlider";
 
  const Home = () => {
     return (
@@ -30,9 +31,14 @@ import { LuIndianRupee } from "react-icons/lu";
           {/* Right Section: Price */}
           <p className="font-bold text-2xl text-red-600">Only ₹199</p>
         </div>
+
+      <AdBannerSlider items={4}/>
       </div>
+
+
     </section>
             <br /> <br /><br /><br /><br /><br />
+
         </>
 
     )
