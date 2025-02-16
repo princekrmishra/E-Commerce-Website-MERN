@@ -91,3 +91,16 @@ nav ul button:hover{
 .homeCatSlider .item:hover img{
     transform: scale(1.2);
 }
+
+::-webkit-scrollbar{
+    width: 8px !important;
+    height: 8px !important;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #ccc;
+}
+
+::-webkit-scrollbar-track{
+    background: #fff;
+}
