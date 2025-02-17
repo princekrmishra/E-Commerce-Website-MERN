@@ -59,7 +59,7 @@ nav ul button:hover{
 .swiper-button-prev:after, .swiper-button-next:after{
     font-size: 22px
     !important;
-    color: #000;
+    color: #ff5252;
 }
 
 .homeCatSlider .swiper-button-prev{
@@ -103,4 +103,17 @@ nav ul button:hover{
 
 ::-webkit-scrollbar-track{
     background: #fff;
+}
+
+.smlBtn .swiper-button-prev,  .smlBtn .swiper-button-next{
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    top: 55% !important;
+}
+
+.smlBtn .swiper-button-prev:after, .smlBtn .swiper-button-next:after{
+    font-size: 18px
+    !important;
+    color: #ff5252;
 }
