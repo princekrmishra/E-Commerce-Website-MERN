@@ -117,3 +117,12 @@ nav ul button:hover{
     !important;
     color: #ff5252;
 }
+
+.MuiTabs-indicator{
+    background-color: #ff5252 !important;
+}
+
+.MuiTab-textColorPrimary.Mui-selected{
+    color: #ff5252 !important;
+}
+

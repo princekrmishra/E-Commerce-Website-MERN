@@ -1,0 +1,16 @@
+.productItem .tile{
+    line-height: 18px;
+}
+.productsSlider .swiper-wrapper{
+    padding: 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.productItem .actions button:hover svg{
+    color: #fff !important;
+}
+
+.productItem .actions button:hover svg{
+    pointer-events: none !important;
+}
