@@ -3,11 +3,18 @@ import HomeSlider from "../../components/HomeSlider";
 import HomeCatSlider from "../../components/HomeCatSlider";
 import { FaShippingFast } from "react-icons/fa";
 import AdBannerSlider from "../../components/AdBannerSlider";
-import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import ProductsSlider from "../../components/ProductsSlider";
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
 
+// import required modules
+import { Navigation } from 'swiper/modules';
+import BlogItem from "../../components/BlogItem";
+import Footer from "../../components/Footer";
 
 
  const Home = () => {
@@ -106,7 +113,48 @@ import ProductsSlider from "../../components/ProductsSlider";
         <AdBannerSlider items={3}/>
       </div>
     </section>
-            <br /> <br /><br /><br /><br /><br />
+
+    <section className="py-5 pt-0 pb-8 bg-white">
+      <div className="container">
+      <h3 className="text-[20px] font-[600] mb-4">From the Blog</h3>
+               <Swiper
+                          slidesPerView={4}
+                          spaceBetween={30}
+                          navigation={true} 
+                          modules={[Navigation]}
+                          className="blogSlider"
+                      >
+                          <SwiperSlide>
+                            <BlogItem />
+                          </SwiperSlide>
+
+                          <SwiperSlide>
+                            <BlogItem />
+                          </SwiperSlide>
+
+                          <SwiperSlide>
+                            <BlogItem />
+                          </SwiperSlide>
+
+                          <SwiperSlide>
+                            <BlogItem />
+                          </SwiperSlide>
+
+
+                          <SwiperSlide>
+                            <BlogItem />
+                          </SwiperSlide>
+
+                          <SwiperSlide>
+                            <BlogItem />
+                          </SwiperSlide>
+                </Swiper>
+      </div>
+    </section>
+
+
+    <Footer />
+       
 
         </>
 
