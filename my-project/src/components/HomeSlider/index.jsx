@@ -16,6 +16,7 @@ import { Navigation, Autoplay } from 'swiper/modules';
         <div className="container">
             
         <Swiper 
+            loop={true}
             spaceBetween={10} 
             navigation={true} 
             modules={[Navigation, Autoplay]} 

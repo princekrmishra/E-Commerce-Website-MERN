@@ -175,7 +175,7 @@ import { FaPinterest } from "react-icons/fa";
                     </Link>
                 </li>
                 <li className='list-none'>
-                    <Link to='/' target='_blank' className='w-[35px] h-[35px] rounded-full border border-[rgba(0,0,0,0.1)] flex items-center justify-center group hover:bg-primary transition-all'>
+                    <Link to='https://www.instagram.com/princemishra._/?next=%2F' target='_blank' className='w-[35px] h-[35px] rounded-full border border-[rgba(0,0,0,0.1)] flex items-center justify-center group hover:bg-primary transition-all'>
                         <FaInstagram className='text-[20px]  group-hover:text-white'/>
                     </Link>
                 </li>

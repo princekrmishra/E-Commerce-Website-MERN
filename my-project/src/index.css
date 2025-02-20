@@ -146,3 +146,11 @@ footer form input::placeholder{
     font-size: 13px !important;
     color: rgba(0,0,0,0.8);
 }
+
+.MuiCheckbox-root{
+    padding: 6px !important;
+}
+
+.ReactCollapse--collapse {
+    transition: height 500ms;
+  }

@@ -14,7 +14,8 @@ import 'swiper/css/navigation';
 // import required modules
 import { Navigation } from 'swiper/modules';
 import BlogItem from "../../components/BlogItem";
-import Footer from "../../components/Footer";
+
+
 
 
  const Home = () => {
@@ -26,7 +27,7 @@ import Footer from "../../components/Footer";
 
     return (
         <>       
-            <HomeSlider/>
+            <HomeSlider/> 
             <HomeCatSlider/>
 
             <section className="bg-white py-8">
@@ -153,7 +154,7 @@ import Footer from "../../components/Footer";
     </section>
 
 
-    <Footer />
+    
        
 
         </>
