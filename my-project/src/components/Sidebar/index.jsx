@@ -25,17 +25,50 @@ import { FaAngleUp } from "react-icons/fa6";
             </h3>
             <Collapse isOpened={isOpenCategoryFilter}>
             <div className="scroll px-4 relative -left-[13px]">
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Fashion" 
+                className='w-full' 
+            />
+
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Fashion" 
+                className='w-full' 
+            />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Fashion" 
+                className='w-full' 
+            />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Fashion" 
+                className='w-full' 
+            />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Fashion" 
+                className='w-full' 
+            />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Fashion" 
+                className='w-full' 
+            />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Fashion" 
+                className='w-full' 
+            />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Fashion" 
+                className='w-full' />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Fashion" 
+                className='w-full' 
+            />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Fashion" 
+                className='w-full' 
+            />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Fashion" 
+                className='w-full' 
+            />
 
             </div>
             </Collapse>
@@ -55,17 +88,18 @@ import { FaAngleUp } from "react-icons/fa6";
             </h3>
             <Collapse isOpened={isOpenCategoryFilter}>
             <div className="scroll px-4 relative -left-[13px]">
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
-            <FormControlLabel control={<Checkbox size='small'/>} label="Fashion" className='w-full' />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Available" 
+                className='w-full' 
+            />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="In-Stock" 
+                className='w-full' 
+            />
+            <FormControlLabel control={<Checkbox size='small'/>} 
+                label="Out-Of-Stock" 
+                className='w-full' 
+            />
 
             </div>
             </Collapse>
