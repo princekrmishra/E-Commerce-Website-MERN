@@ -32,6 +32,10 @@ body{
     font-size: 16px !important;
     padding: 7px 20px !important;
 }
+.btn-org:hover{
+    background: #171717 !important;
+}
+
 
 .link:hover{
     color: #ff5252;
@@ -153,4 +157,44 @@ footer form input::placeholder{
 
 .ReactCollapse--collapse {
     transition: height 400ms;
+}
+
+.itemViewActions button.active svg{
+    color: #ff5252 !important;
+    opacity: 1;
+}
+
+
+.Mui-selected.MuiPaginationItem-page{
+    background: #ff5252 !important;
+    color: #fff !important;
+}
+
+.zoomProductSliderThumbs .swiper-slide{
+    height: auto !important;
+}
+
+.zoomProductSliderThumbs .swiper-button-next{
+    bottom: 0px !important;
+    right: inherit !important;
+    top: inherit !important;
+    width: 100% !important;
+    height:  30px !important;
+    border-radius: 0px !important;
+}
+
+.zoomProductSliderThumbs .swiper-button-next:after{
+    transform: rotate(90deg);
+}
+
+.zoomProductSliderThumbs .swiper-button-prev{
+    top: 20px !important;
+    left: 0 !important;
+    width: 100% !important;
+    height:  30px !important;
+    border-radius: 0px !important;
+}
+
+.zoomProductSliderThumbs .swiper-button-prev:after{
+    transform: rotate(90deg);
 }

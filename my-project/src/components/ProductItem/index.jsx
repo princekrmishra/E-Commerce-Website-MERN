@@ -13,10 +13,10 @@ import { IoMdGitCompare } from "react-icons/io";
         <div className="group imgWrapper w-[100&] overflow-hidden rounded-md relative">
             <Link to='/'>
             <div className="img h-[220px] overflow-hidden">
-                <img src="https://res.cloudinary.com/duqoh8gf5/image/upload/v1736781297/1736781294242_montrez-men-light-blue-solid-jacket-product-images-rvwmdqy2dw-0-202311201747.jpg"
+                <img src="https://api.spicezgold.com/download/file_1734690981297_23990e6b-d01e-40fd-bb6b-98198db544c01714702040162RARERABBITMenComfortOpaqueCasualShirt2.jpg"
                 className='w-full' />
 
-                <img src="https://res.cloudinary.com/duqoh8gf5/image/upload/v1736781298/1736781294264_montrez-men-light-blue-solid-jacket-product-images-rvwmdqy2dw-1-202311201747.jpg"
+                <img src="https://api.spicezgold.com/download/file_1734690981297_23990e6b-d01e-40fd-bb6b-98198db544c01714702040162RARERABBITMenComfortOpaqueCasualShirt2.jpg"
                 className='w-full absolute top-0 left-0 opacity-0 transition-all duration-600 group-hover:opacity-100 group-hover:scale-105' />
             </div>
             

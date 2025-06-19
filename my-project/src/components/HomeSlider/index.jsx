@@ -31,7 +31,7 @@ import { Navigation, Autoplay } from 'swiper/modules';
         <SwiperSlide>
             <div className="item overflow-hidden rounded-[10px]">
                 <img 
-                    src="https://res.cloudinary.com/duqoh8gf5/image/upload/v1739165904/1739165903970_file_1734525014348_NewProject_7.jpg" 
+                    src="https://api.spicezgold.com/download/file_1734524985581_NewProject(11).jpg" 
                     alt="banner" 
                     className='w-full h-[600px]'/> 
             </div>
