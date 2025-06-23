@@ -100,7 +100,7 @@ import BlogItem from "../../components/BlogItem";
 
     <section className="py-5 pt-0 bg-white">
       <div className="container">
-      <h3 className="text-[20px] font-[600]">Latest Products</h3>
+      <h2 className="text-[20px] font-[600]">Latest Products</h2>
         <ProductsSlider items={6}/>
         <AdBannerSlider items={3}/>
       </div>
