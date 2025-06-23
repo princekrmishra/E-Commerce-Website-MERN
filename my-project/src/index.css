@@ -17,8 +17,13 @@ body{
     font-family: "Montserrat", serif;
     font-optical-sizing: auto;
     background: #f5f0f0;
-    color: rgba(0,0,0, 0.9);
+    color: #666;
     overflow-x: hidden;
+}
+
+p{
+    font-size: 14px;
+    line-height: 25px;
 }
 
 .MuiBadge-badge{
@@ -198,3 +203,19 @@ footer form input::placeholder{
 .zoomProductSliderThumbs .swiper-button-prev:after{
     transform: rotate(90deg);
 }
+
+.productContent .actions button{
+    min-height: 40px !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    height: 30px !important;
+    color: rgba(0,0,0,0.7);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+   {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
