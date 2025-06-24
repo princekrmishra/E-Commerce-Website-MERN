@@ -245,4 +245,9 @@ input[type=number]::-webkit-outer-spin-button
   }
 
 
+  .cartPanel .MuiPaper-root{
+    width: 400px;
+  }
+
+
 

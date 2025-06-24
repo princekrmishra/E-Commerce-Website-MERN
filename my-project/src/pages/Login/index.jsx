@@ -13,7 +13,7 @@ import { FcGoogle } from "react-icons/fc";
     <section className='section py-10'>
         <div className='container'>
             <div className="card shadow-md w-[500px] m-auto rounded-md bg-white p-5 px-10">
-                <h3 className='text-center text-[18px] text-black'>Login to your account</h3>
+                <h3 className='text-center text-[18px] text-black'>Login</h3>
                 <form className="w-full mt-5">
                     
                     <div className="form-group w-full mb-5">

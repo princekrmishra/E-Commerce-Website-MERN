@@ -20,15 +20,22 @@ import { ProductDetailsComponent } from './components/ProductDetails';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
+import Drawer from '@mui/material/Drawer';
+import CartPanel from "./components/CartPanel"
+
+
 
 
 const MyContext = createContext();
 
 function App() {
 
+  const [openCartPanel, setOpenCartPanel] = useState(false);
+
+
   const [openProductDetailsModal, setOpenProductDetailsModal] = useState(false);
-  const [maxWidth, setMaxWidth] = React.useState('lg');
-  const [fullWidth, setFullWidth] = React.useState(true);
+  const [maxWidth, setMaxWidth] = useState('lg');
+  const [fullWidth, setFullWidth] = useState(true);
 
 
 
@@ -37,7 +44,12 @@ function App() {
   };
 
   const values = {
-      setOpenProductDetailsModal
+      setOpenProductDetailsModal,
+      setOpenCartPanel
+  };
+
+  const toggleCartPanel = (newOpen) => () => {
+    setOpenCartPanel(newOpen);
   };
 
   return (
@@ -83,6 +95,23 @@ function App() {
         </DialogContent>
         
       </Dialog>
+      {/* cart panel */}
+      <Drawer 
+      open={openCartPanel} 
+      onClose={toggleCartPanel(false)} 
+      anchor='right'
+      className='w-[500px] cartPanel'
+      >
+
+        <div className="flex items-center justify-between py-3 px-4 gap-3 border-b border-[rgba(0,0,0,0.1)] overflow-hidden">
+          <h4>Shopping Cart (1) </h4>
+          <IoCloseSharp className='text-[20px] cursor-pointer' onClick={toggleCartPanel(false)}/>
+        </div>
+
+
+
+        <CartPanel />
+      </Drawer>
     </>
   )
 }
