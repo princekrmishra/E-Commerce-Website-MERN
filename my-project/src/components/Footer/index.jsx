@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaShippingFast } from "react-icons/fa";
 import { TbTruckReturn } from "react-icons/tb";
 import { RiSecurePaymentLine } from "react-icons/ri";
@@ -15,7 +15,16 @@ import { FaInstagram } from "react-icons/fa";
 import { TbBrandYoutubeFilled } from "react-icons/tb";
 import { FaPinterest } from "react-icons/fa";
 
+import Drawer from '@mui/material/Drawer';
+import { IoCloseSharp } from "react-icons/io5";
+import CartPanel from "../CartPanel"
+import { MyContext } from '../../App';
+
+
  const Footer = () => {
+
+    const context = useContext(MyContext);
+    
   return (
     <>
         <footer className='py-6 bg-[]#fafafa'>
@@ -197,6 +206,27 @@ import { FaPinterest } from "react-icons/fa";
                 </div>
         </div>
     </div>
+
+
+    {/* cart panel */}
+      <Drawer 
+      open={context.openCartPanel} 
+      onClose={context.toggleCartPanel(false)} 
+      anchor='right'
+      className='w-[500px] cartPanel'
+      >
+
+        <div className="flex items-center justify-between py-3 px-4 gap-3 border-b border-[rgba(0,0,0,0.1)] overflow-hidden">
+          <h4>Shopping Cart (1) </h4>
+          <IoCloseSharp className='text-[20px] cursor-pointer' onClick={context.toggleCartPanel(false)}/>
+        </div>
+
+
+
+        <CartPanel />
+      </Drawer>
+
+
     </>
   )
 }

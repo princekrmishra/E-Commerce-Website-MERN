@@ -19,11 +19,11 @@ import { IoCloseSharp } from "react-icons/io5";
 import { ProductDetailsComponent } from './components/ProductDetails';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import CartPage from './pages/Cart';
+import Verify from './pages/verify';
+import ForgotPassword from './pages/ForgotPassword';
 
-import Drawer from '@mui/material/Drawer';
-import CartPanel from "./components/CartPanel"
-
-
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const MyContext = createContext();
@@ -43,13 +43,26 @@ function App() {
     setOpenProductDetailsModal(false);
   };
 
-  const values = {
-      setOpenProductDetailsModal,
-      setOpenCartPanel
-  };
 
   const toggleCartPanel = (newOpen) => () => {
     setOpenCartPanel(newOpen);
+  };
+
+  const openAlertBox= (status, msg) => {
+    if(status === "success"){
+      toast.success(msg)
+    }
+    if(status === "error"){
+      toast.error(msg)
+    }
+  }
+
+  const values = {
+      setOpenProductDetailsModal,
+      setOpenCartPanel,
+      toggleCartPanel,
+      openCartPanel,
+      openAlertBox
   };
 
   return (
@@ -63,10 +76,16 @@ function App() {
       <Route path='/product/:id' exact={true} element={<ProductDetails/>}/>
       <Route path={'/login'} exact={true} element={<Login/>} />
       <Route path={'/register'} exact={true} element={<Register/>} />
+      <Route path={'/cart'} exact={true} element={<CartPage/>} />
+      <Route path={'/verify'} exact={true} element={<Verify/>} />
+      <Route path={'/forgot-password'} exact={true} element={<ForgotPassword/>} />
+   
     </Routes>
      <Footer />
      </MyContext.Provider>
     </BrowserRouter>
+
+    <Toaster />
         
     <Dialog
         open={openProductDetailsModal}
@@ -95,23 +114,7 @@ function App() {
         </DialogContent>
         
       </Dialog>
-      {/* cart panel */}
-      <Drawer 
-      open={openCartPanel} 
-      onClose={toggleCartPanel(false)} 
-      anchor='right'
-      className='w-[500px] cartPanel'
-      >
-
-        <div className="flex items-center justify-between py-3 px-4 gap-3 border-b border-[rgba(0,0,0,0.1)] overflow-hidden">
-          <h4>Shopping Cart (1) </h4>
-          <IoCloseSharp className='text-[20px] cursor-pointer' onClick={toggleCartPanel(false)}/>
-        </div>
-
-
-
-        <CartPanel />
-      </Drawer>
+      
     </>
   )
 }

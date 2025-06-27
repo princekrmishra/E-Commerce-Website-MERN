@@ -1,19 +1,36 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
+import { MyContext } from '../../App';
 
  const Login = () => {
+    const context = useContext(MyContext);
 
-    const [isPasswordShow, setIsPasswordShow] = useState(false)
+    const [isPasswordShow, setIsPasswordShow] = useState(false);
+    const [formFields, setFormFields] = useState({
+        email: '',
+        password: ''
+    }); 
+
+    const history = useNavigate();
+
+    const forgotPassword = () => { 
+        context.openAlertBox("success", "OTP send");
+        history("/verify");
+            
+        
+    }
   return (
     <section className='section py-10'>
         <div className='container'>
             <div className="card shadow-md w-[500px] m-auto rounded-md bg-white p-5 px-10">
-                <h3 className='text-center text-[18px] text-black'>Login</h3>
+                <h3 className='text-center text-[18px] text-black'>
+                    Login
+                </h3>
                 <form className="w-full mt-5">
                     
                     <div className="form-group w-full mb-5">
@@ -23,6 +40,7 @@ import { FcGoogle } from "react-icons/fc";
                         label="Email Id*" 
                         variant="outlined"
                         className='w-full' 
+                        name="name"
                         />
                     </div>
 
@@ -33,6 +51,7 @@ import { FcGoogle } from "react-icons/fc";
                         label="Password*" 
                         variant="outlined"
                         className='w-full' 
+                        name="password"
                         />
 
                         <Button className='!absolute top-[10px] right-[10px] z-50 !w-[35px] !h-[35px] !min-w-[35px] !rounded-full !text-black' onClick={() => setIsPasswordShow(!isPasswordShow)} >
@@ -43,7 +62,7 @@ import { FcGoogle } from "react-icons/fc";
                             
                     </div>
 
-                    <a className="link cursor-pointer text-[14px] font-[600]">Forgot Password?</a>
+                    <a className="link cursor-pointer text-[14px] font-[600]" onClick={forgotPassword}>Forgot Password?</a>
 
                     <div className="flex items-center w-full mt-3 mb-3">
                         <Button className='btn-org w-full btn-lg'>
