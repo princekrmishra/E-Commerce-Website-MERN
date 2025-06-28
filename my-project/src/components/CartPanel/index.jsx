@@ -172,7 +172,7 @@ import  Button  from '@mui/material/Button';
 
             <div className="flex items-center justify-between w-full gap-5">
                 <Link to='/cart' className='w-[50%] d-block'><Button className="btn-org btn-lg w-full">View Cart</Button></Link>
-                <Link to='/checkout' className='w-[50%] d-block'><Button className="btn-org btn-lg w-full">CheckOut</Button></Link>
+                <Link to='/checkout' className='w-[50%] d-block'><Button className="btn-org btn-lg btn-border w-full">CheckOut</Button></Link>
                 
             </div>
 

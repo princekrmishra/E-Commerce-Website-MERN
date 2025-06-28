@@ -7,6 +7,7 @@ import ProductListing from './pages/ProductListing';
 import Footer from './components/Footer';
 import { ProductDetails } from './pages/ProductDetails';
 import { createContext } from 'react';
+import MyAccount from './pages/MyAccount'
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -25,18 +26,20 @@ import ForgotPassword from './pages/ForgotPassword';
 
 import toast, { Toaster } from 'react-hot-toast';
 import CheckOut from './pages/CheckOut';
+import MyList from './pages/MyList';
 
 
 const MyContext = createContext();
 
 function App() {
 
-  const [openCartPanel, setOpenCartPanel] = useState(false);
-
-
+  
   const [openProductDetailsModal, setOpenProductDetailsModal] = useState(false);
   const [maxWidth, setMaxWidth] = useState('lg');
   const [fullWidth, setFullWidth] = useState(true);
+  const [isLogin, setIsLogin] = useState(true);
+  
+  const [openCartPanel, setOpenCartPanel] = useState(false);
 
 
 
@@ -63,7 +66,9 @@ function App() {
       setOpenCartPanel,
       toggleCartPanel,
       openCartPanel,
-      openAlertBox
+      openAlertBox,
+      isLogin,
+      setIsLogin
   };
 
   return (
@@ -81,6 +86,8 @@ function App() {
       <Route path={'/verify'} exact={true} element={<Verify/>} />
       <Route path={'/forgot-password'} exact={true} element={<ForgotPassword/>} />
       <Route path={'/checkout'} exact={true} element={<CheckOut/>} />
+      <Route path={'/my-account'} exact={true} element={<MyAccount/>} />
+      <Route path={'/my-list'} exact={true} element={<MyList/>} />
    
     </Routes>
      <Footer />
