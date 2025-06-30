@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import { ProductDetails } from './pages/ProductDetails';
 import { createContext } from 'react';
 import MyAccount from './pages/MyAccount'
+import Orders from './pages/Orders'
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -88,6 +89,7 @@ function App() {
       <Route path={'/checkout'} exact={true} element={<CheckOut/>} />
       <Route path={'/my-account'} exact={true} element={<MyAccount/>} />
       <Route path={'/my-list'} exact={true} element={<MyList/>} />
+      <Route path={'/my-orders'} exact={true} element={<Orders/>} />
    
     </Routes>
      <Footer />
