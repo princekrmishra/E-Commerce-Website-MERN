@@ -9,6 +9,10 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import { FaRegUser } from "react-icons/fa6";
+import { LuSettings } from "react-icons/lu";
+import { FiActivity } from "react-icons/fi";
+import { PiSignOutFill } from "react-icons/pi";
+
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -29,7 +33,7 @@ const Header = () => {
         setAnchorMyAcc(null);
     };
   return (
-    <header className='w-full h-[50px] pl-52 pr-7 bg-[#f1f1f1] flex items-center justify-between'>
+    <header className='w-full h-[auto] py-2 shadow-md pl-64 pr-7 bg-[#f1f1f1] flex items-center justify-between'>
         <div className="part1">
             <Button className='!w-[40px] !h-[40px] !rounded-full  !min-w-[40px] !text-[rgba(0,0,0,0.8)]'>
                 <IoMenu className='text-[18px] text-[rgba(0,0,0,0.8)]'/>
@@ -37,7 +41,7 @@ const Header = () => {
         </div>
 
 
-        <div className="part2 w-[40%] flex items-center justify-end gap-4">
+        <div className="part2 w-[40%] flex items-center justify-end gap-5">
             <IconButton aria-label="cart">
                 <StyledBadge badgeContent={4} color="secondary">
                 <FaRegBell />
@@ -102,8 +106,22 @@ const Header = () => {
 
         <Divider/>
 
-        <MenuItem onClick={handleCloseMyAcc}>
-            <FaRegUser/>
+        <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>
+            <FaRegUser/><span className='text-[14px]'>Profile</span>
+        </MenuItem>
+
+        <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>
+            <LuSettings/><span className='text-[14px]'>Account Setting</span>
+        </MenuItem>
+
+        <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>
+            <FiActivity/><span className='text-[14px]'>Activity Log</span>
+        </MenuItem>
+
+        <Divider/>
+
+        <MenuItem onClick={handleCloseMyAcc} className='flex items-center gap-3'>
+            <PiSignOutFill/><span className='text-[14px]'>Sign Out</span>
         </MenuItem>
           
       </Menu>
