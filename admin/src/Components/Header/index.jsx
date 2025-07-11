@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { IoMenu } from "react-icons/io5";
 import Button from "@mui/material/Button"
 import Badge from '@mui/material/Badge';
@@ -12,7 +12,7 @@ import { FaRegUser } from "react-icons/fa6";
 import { LuSettings } from "react-icons/lu";
 import { FiActivity } from "react-icons/fi";
 import { PiSignOutFill } from "react-icons/pi";
-
+import {MyContext} from '../../App'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -32,10 +32,16 @@ const Header = () => {
     const handleCloseMyAcc = () => {
         setAnchorMyAcc(null);
     };
+    
+    const context = useContext(MyContext);
+   
   return (
-    <header className='w-full h-[auto] py-2 shadow-md pl-64 pr-7 bg-[#f1f1f1] flex items-center justify-between'>
+    <header className={`w-full h-auto py-2 shadow-md  ${context.isSideBarOpen ? 'ml-[18%]' : 'pl-5'} pr-7 bg-[#f1f1f1] flex items-center justify-between z-50 relative transition-all duration-300 ease-in-out `}>
+
+
+      
         <div className="part1">
-            <Button className='!w-[40px] !h-[40px] !rounded-full  !min-w-[40px] !text-[rgba(0,0,0,0.8)]'>
+            <Button className='!w-[40px] !h-[40px] !rounded-full  !min-w-[40px] !text-[rgba(0,0,0,0.8)] transition-all duration-300 ease-in-out ' onClick={() => context.setIsSideBarOpen(!context.isSideBarOpen)}>
                 <IoMenu className='text-[18px] text-[rgba(0,0,0,0.8)]'/>
             </Button>
         </div>
