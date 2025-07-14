@@ -1,5 +1,5 @@
 
-import React, { useState, PureComponent } from 'react';
+import React, { useState, PureComponent, useContext } from 'react';
 import DashboardBoxes from '../../Components/DashboardBoxes';
 import Button from '@mui/material/Button';
 import { FaPlus, FaAngleDown } from 'react-icons/fa';
@@ -18,6 +18,8 @@ import TooltipMui from '@mui/material/Tooltip';
 import Pagination from '@mui/material/Pagination';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { MyContext } from '../../App';
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -29,6 +31,9 @@ const Dashboard = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [categoryFilterVal, setCategoryFilterVal] = React.useState('');
+
+  const context = useContext(MyContext);
+
   const [chart1Data, setChart1Data] = React.useState( [
   {
     name: 'January',

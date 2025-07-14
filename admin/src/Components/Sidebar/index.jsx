@@ -32,17 +32,19 @@ const Sidebar = () => {
     <div className={`fixed top-0 left-0 bg-white h-full border-r border-[rgba(0,0,0,0.1)] py-2 px-4 transition-all duration-300 ${context.isSideBarOpen ? 'w-[18%]' : 'w-0'}`}>
       <div className="py-2">
         <Link to="/">
-          <img src="userimage.svg" className="w-[200px]" />
+          <img src="/userimage.svg" className="w-[200px]" />
         </Link>
       </div>
 
       <ul className="mt-4 space-y-1">
         {/* Dashboard */}
         <li>
+          <Link to='/'>
           <Button className="w-full !capitalize !justify-start flex gap-3 !text-[14px] !text-[rgba(0,0,0,0.8)] !font-[500] items-center !py-2 hover:!bg-[#f1f1f1]">
             <RxDashboard className="text-[18px]" />
             <span>Dashboard</span>
           </Button>
+          </Link>
         </li>
 
         {/* Home Slides */}
@@ -70,16 +72,37 @@ const Sidebar = () => {
 
         {/* Products */}
         <li>
+          <Link to='/'>
           <Button className="w-full !capitalize !justify-start flex gap-3 !text-[14px] !text-[rgba(0,0,0,0.8)] !font-[500] items-center !py-2 hover:!bg-[#f1f1f1]">
             <MdOutlineProductionQuantityLimits className="text-[20px]" />
             <span>Products</span>
             <span className="ml-auto w-[30px] h-[30px] flex items-center justify-center" onClick={() => isOpenSubMenu(2)}><FaAngleDown /></span>
           </Button>
+          </Link>
           <Collapse isOpened={subMenuIndex === 2}>
+
             <ul className="w-full">
-              <li><SubMenuItem label="Product List" /></li>
-              <li><SubMenuItem label="Product Upload" /></li>
-            </ul>
+              <li className='w-full'>
+                <Link to='/products'>
+                <Button className='!text-[rgba(0,0,0,0.7)] !capitalize !justify-start !w-full !pl-9 gap-3'>
+                  <span className='block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)] '></span>
+                    Product List
+                </Button>
+                </Link>
+                </li>
+            
+              <li className='w-full'>
+                
+                  <Button className='!text-[rgba(0,0,0,0.7)] !capitalize !justify-start !w-full !pl-9 gap-3' onClick={() => context.setIsOpenFullScreenPanel({
+                    open:true, 
+                    model: "Add Product"})}>
+                    <span className='block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)] '></span>
+                      Product Upload
+                  </Button>
+                
+                </li>
+            </ul>  
+            
           </Collapse>
         </li>
 
@@ -91,12 +114,48 @@ const Sidebar = () => {
             <span className="ml-auto w-[30px] h-[30px] flex items-center justify-center" onClick={() => isOpenSubMenu(3)}><FaAngleDown /></span>
           </Button>
           <Collapse isOpened={subMenuIndex === 3}>
-            <ul className="w-full">
-              <li><SubMenuItem label="Category List" /></li>
-              <li><SubMenuItem label="Add a Category" /></li>
-              <li><SubMenuItem label="Sub Category List" /></li>
-              <li><SubMenuItem label="Add a Sub Category" /></li>
-            </ul>
+          <ul className="w-full">
+              <li className='w-full'>
+                <Link to='#'>
+                <Button className='!text-[rgba(0,0,0,0.7)] !capitalize !justify-start !w-full !pl-9 gap-3'>
+                  <span className='block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)] '></span>
+                    Category List
+                </Button>
+                </Link>
+                </li>
+            
+              <li className='w-full'>
+                <Link to='#'>
+                  <Button className='!text-[rgba(0,0,0,0.7)] !capitalize !justify-start !w-full !pl-9 gap-3' onClick={() => context.setIsOpenFullScreenPanel({
+                    open:true, 
+                    model: "Add Product"})}>
+                    <span className='block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)] '></span>
+                      Add a Category
+                  </Button>
+                </Link>
+                </li>
+                <li className='w-full'>
+                <Link to='#'>
+                  <Button className='!text-[rgba(0,0,0,0.7)] !capitalize !justify-start !w-full !pl-9 gap-3' onClick={() => context.setIsOpenFullScreenPanel({
+                    open:true, 
+                    model: "Add Product"})}>
+                    <span className='block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)] '></span>
+                      Sub Category List
+                  </Button>
+                </Link>
+                </li>
+                <li className='w-full'>
+                <Link to='#'>
+                  <Button className='!text-[rgba(0,0,0,0.7)] !capitalize !justify-start !w-full !pl-9 gap-3' onClick={() => context.setIsOpenFullScreenPanel({
+                    open:true, 
+                    model: "Add Product"})}>
+                    <span className='block w-[5px] h-[5px] rounded-full bg-[rgba(0,0,0,0.2)] '></span>
+                      Add a Sub Category
+                  </Button>
+                </Link>
+                </li>
+            </ul>  
+            
           </Collapse>
         </li>
 
