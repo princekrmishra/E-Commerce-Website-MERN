@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, PureComponent } from 'react';
 import DashboardBoxes from '../../Components/DashboardBoxes';
 import Button from '@mui/material/Button';
 import { FaPlus, FaAngleDown } from 'react-icons/fa';
@@ -14,11 +14,11 @@ import Progres from '../../Components/ProgressBar';
 import { AiOutlineEdit } from "react-icons/ai";
 import { FiEye } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
-import Tooltip from '@mui/material/Tooltip';
+import TooltipMui from '@mui/material/Tooltip';
 import Pagination from '@mui/material/Pagination';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { BiExport } from "react-icons/bi";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -29,6 +29,80 @@ const Dashboard = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [categoryFilterVal, setCategoryFilterVal] = React.useState('');
+  const [chart1Data, setChart1Data] = React.useState( [
+  {
+    name: 'January',
+    TotalSales: 4000,
+    TotalUsers: 2400,
+    amt: 2400,
+  },
+  {
+    name: 'February',
+    TotalSales: 3000,
+    TotalUsers: 1398,
+    amt: 2210,
+  },
+  {
+    name: 'March',
+    TotalSales: 2000,
+    TotalUsers: 9800,
+    amt: 2290,
+  },
+  {
+    name: 'April',
+    TotalSales: 2780,
+    TotalUsers: 3908,
+    amt: 2000,
+  },
+  {
+    name: 'May',
+    TotalSales: 1890,
+    TotalUsers: 4800,
+    amt: 2181,
+  },
+  {
+    name: 'June',
+    TotalSales: 2390,
+    TotalUsers: 3800,
+    amt: 2500,
+  },
+  {
+    name: 'July',
+    TotalSales: 3490,
+    TotalUsers: 4300,
+    amt: 2100,
+  },
+  {
+    name: 'August',
+    TotalSales: 3490,
+    TotalUsers: 2400,
+    amt: 2100,
+  },
+  {
+    name: 'Septemper',
+    TotalSales: 3490,
+    TotalUsers: 4900,
+    amt: 2100,
+  },
+  {
+    name: 'October',
+    TotalSales: 3490,
+    TotalUsers: 6420,
+    amt: 2100,
+  },
+  {
+    name: 'November',
+    TotalSales: 3490,
+    TotalUsers: 2300,
+    amt: 2100,
+  },
+  {
+    name: 'December',
+    TotalSales: 3490,
+    TotalUsers: 1300,
+    amt: 2100,
+  },
+])
 
   const handleChangeFilter = (event) => {
     setCategoryFilterVal(event.target.value);
@@ -142,12 +216,13 @@ const Dashboard = () => {
   ];
 
   
-
   return (
     <>
+
+    <main className="pt-[80px] px-5">
       <div className="w-full py-2 bg-white px-5 border border-[rgba(0,0,0,0.1)] flex items-center gap-8 mb-5 justify-between rounded-md">
-        <div className="info">
-          <h1 className="text-[35px] font-bold leading-10 mb-3">
+        <div className="info ">
+          <h1 className="text-[35px] pt-10 font-bold leading-10 mb-3">
             Good Morning,<br /> Prince
           </h1>
           <p>Here's what's happening on your store today. See the statistics at once.</p>
@@ -159,7 +234,159 @@ const Dashboard = () => {
 
       <DashboardBoxes />
 
+      
+
+
       <div className="card my-4 shadow-md sm:rounded-lg bg-white">
+        
+
+    <div className="flex items-center justify-between px-5 py-5">
+        <h2 className="text-[18px] font-[600]">
+            Products 
+                <span className="text-gray-400 font-normal text-[14px]">
+            Tailwind CSS
+                </span>
+        </h2>
+    </div>
+
+<div className="flex flex-wrap items-center justify-between px-5 py-3 gap-y-3">
+  {/* Left Filter */}
+  <div className="w-[250px]">
+    <h4 className="font-[600] text-[13px] mb-2">Category By</h4>
+    <Select
+      className="w-full"
+      size="small"
+      labelId="demo-simple-select-standard-label"
+      id="demo-simple-select-standard"
+      value={categoryFilterVal}
+      onChange={handleChangeFilter}
+    >
+      <MenuItem value=""><em>None</em></MenuItem>
+      <MenuItem value={10}>Men</MenuItem>
+      <MenuItem value={20}>Women</MenuItem>
+      <MenuItem value={30}>Kids</MenuItem>
+    </Select>
+  </div>
+
+  {/* Right Buttons */}
+  <div className="flex items-center gap-3">
+    <Button className="!bg-green-600 !text-white btn  btn-sm">Export</Button>
+    <Button className="btn-blue !text-white btn-sm">Add Products</Button>
+  </div>
+</div>
+
+        
+
+
+        <div className="relative overflow-x-auto mt-5 pb-5">
+          <table className="w-full text-sm text-left text-gray-700">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-100">
+              <tr>
+                <th className="px-6 py-3 w-[10%]">
+                    <div className="w-[60px]">
+                        <Checkbox {...label}  />
+                    </div>
+                </th>
+                <th className="px-6 py-3">Product</th>
+                <th className="px-6 py-3">Category</th>
+                <th className="px-6 py-3">Sub Category</th>
+                <th className="px-6 py-3">Price</th>
+                <th className="px-6 py-3">Sales</th>
+                <th className="px-6 py-3">Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
+                    <td className="px-6 py-3 w-[10%]">
+                        <div className="w-[60px]">
+                            <Checkbox {...label} size='small'  />
+                        </div>
+                    </td>
+                    <td className="px-6 py-3 w-[10%]">
+                        <div className="flex items-center gap-4 w-[300px]">
+                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
+                                <Link to='/product/45745'>
+                                    <img src="./product-1.jpg" className="w-full group-hover:scale-105 transition-all"></img>
+                                </Link>
+                                
+                        </div>
+                        <div className="info w-[75%]">
+                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
+                                <Link to='/product/45745'>
+                                    Flörven
+                                </Link>
+                            </h3>
+                            <span className='text-[12px]'>
+                                Chair
+                            </span>
+                        </div>
+                        </div>
+                    </td>
+
+                    <td className="px-6 py-3 w-[10%]">
+                        Electronics
+                    </td>
+
+                    <td className="px-6 py-3 w-[10%]">
+                        Women
+                    </td>
+
+                    <td className="px-6 py-3 w-[10%]">
+                        <div className="flex gap-1 flex-col">
+                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
+                                $58.00
+                            </span>
+                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
+                                $58.00
+                            </span>
+                        </div>
+                    </td>
+
+                    <td className="px-6 py-3 w-[10%]">
+                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
+                        <Progres value={10} type="error"/>
+                    </td>
+
+                    <td className="px-6 py-3 w-[10%]">
+                        <div className="flex items-center gap-1">
+                             <TooltipMui title="Edit Product" placement="top">
+                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
+                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
+                            </Button>
+                            </TooltipMui>
+                            <TooltipMui title="View Product" placement="top-start">
+                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
+                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
+                            </Button>
+                            </TooltipMui>
+                            <TooltipMui title="Delete Product" placement="top-start">
+                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
+                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
+                            </Button>
+                            </TooltipMui>
+                        </div>
+                    </td>
+                </tr>
+
+                
+                
+
+                
+
+                
+                
+                
+            </tbody>
+
+          </table>
+        </div>
+        <div className="flex items-center justify-end pt-5 pb-5 px-4">
+                <Pagination count={10} color='[#3372fa] '/> 
+        </div>
+        </div>
+
+        <div className="card my-4 shadow-md sm:rounded-lg bg-white">
         <div className="flex items-center justify-between px-5 py-5">
           <h2 className="text-[18px] font-[600]">Recent Orders</h2>
         </div>
@@ -261,955 +488,43 @@ const Dashboard = () => {
 
         
       </div>
-
-
-      <div className="card my-4 shadow-md sm:rounded-lg bg-white">
         
-
-        <div className="flex items-center justify-between px-5 py-5">
-  <h2 className="text-[18px] font-[600]">
-    Products <span className="text-gray-400 font-normal text-[14px]">Tailwind CSS</span>
-  </h2>
-</div>
-
-<div className="flex flex-wrap items-center justify-between px-5 py-3 gap-y-3">
-  {/* Left Filter */}
-  <div className="w-[250px]">
-    <h4 className="font-[600] text-[13px] mb-2">Category By</h4>
-    <Select
-      className="w-full"
-      size="small"
-      labelId="demo-simple-select-standard-label"
-      id="demo-simple-select-standard"
-      value={categoryFilterVal}
-      onChange={handleChangeFilter}
-    >
-      <MenuItem value=""><em>None</em></MenuItem>
-      <MenuItem value={10}>Men</MenuItem>
-      <MenuItem value={20}>Women</MenuItem>
-      <MenuItem value={30}>Kids</MenuItem>
-    </Select>
-  </div>
-
-  {/* Right Buttons */}
-  <div className="flex items-center gap-3">
-    <Button className="!bg-green-600 !text-white btn-sm">Export</Button>
-    <Button className="btn-blue !text-white btn-sm">Add Products</Button>
-  </div>
-</div>
-
         
-
-
-        <div className="relative overflow-x-auto mt-5 pb-5">
-          <table className="w-full text-sm text-left text-gray-700">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-100">
-              <tr>
-                <th className="px-6 py-3 w-[10%]">
-                    <div className="w-[60px]">
-                        <Checkbox {...label}  />
-                    </div>
-                </th>
-                <th className="px-6 py-3">Product</th>
-                <th className="px-6 py-3">Category</th>
-                <th className="px-6 py-3">Sub Category</th>
-                <th className="px-6 py-3">Price</th>
-                <th className="px-6 py-3">Sales</th>
-                <th className="px-6 py-3">Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-1.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-2.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td> 
-                </tr>
-
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-3.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td> 
-                </tr>
-
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-4.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td> 
-                </tr>
-
-
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-5.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td> 
-                </tr>
-
-
-                
-
-
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-6.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td> 
-                </tr>
-
-                
-
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-7.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td> 
-                </tr>
-
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-8.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td> 
-                </tr>
-
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-9.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td> 
-                </tr>
-
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-10.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td> 
-                </tr>
-
-
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-11.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td> 
-                </tr>
-
-
-                <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200">
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="w-[60px]">
-                            <Checkbox {...label} size='small'  />
-                        </div>
-                    </td>
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-4 w-[300px]">
-                            <div className="img w-[65px] h-[65] overflow-hidden rounded-md group">
-                                <Link to='/product/45745'>
-                                    <img src="./product-12.jpg" className="w-full group-hover:scale-105 transition-all"></img>
-                                </Link>
-                                
-                        </div>
-                        <div className="info w-[75%]">
-                            <h3 className='font-[600] text-[14px] leading-4 hover:text-[#3872fa]'>
-                                <Link to='/product/45745'>
-                                    Flörven
-                                </Link>
-                            </h3>
-                            <span className='text-[12px]'>
-                                Chair
-                            </span>
-                        </div>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Electronics
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        Women
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex gap-1 flex-col">
-                            <span className='oldPrice line-through leading-3 text-gray-500 text-[14px] font-[500]'>
-                                $58.00
-                            </span>
-                            <span className='price  text-[#3872fa] text-[14px] font-[600]'>
-                                $58.00
-                            </span>
-                        </div>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <p className='text-[14px] w-[100px]'><span className='font-[600]'>234</span>sale</p> 
-                        <Progres value={10} type="error"/>
-                    </td>
-
-                    <td className="px-6 py-3 w-[10%]">
-                        <div className="flex items-center gap-1">
-                             <Tooltip title="Edit Product" placement="top">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <AiOutlineEdit className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="View Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <FiEye className='text-[rgba(0,0,0,0.7)] text-[18px] '/>
-                            </Button>
-                            </Tooltip>
-                            <Tooltip title="Delete Product" placement="top-start">
-                            <Button className='!w-[35px] !h-[35px] !min-w-[35px] bg-[#f1f1f1]  !border-[rgba(0,0,0,0.4)] !rounded-full hover:!bg-[#ccc]'>
-                                <MdDeleteOutline className='text-[rgba(0,0,0,0.7)] text-[20px] '/>
-                            </Button>
-                            </Tooltip>
-                        </div>
-                    </td> 
-                </tr>
-
-                
-                
-                
-            </tbody>
-
-          </table>
+        <div className="card my-4 shadow-md sm:rounded-lg bg-white">
+            <div className="flex items-center justify-between px-5 py-5 pb-0">
+                <h2 className="text-[18px] font-[600]">Total Users & Total Sales</h2>
+            </div>
+
+            <div className="flex items-center gap-5 px-5 py-5 pt-0">
+                <span className='flex items-center gap-1'><span className='block w-[8px] h-[8px] rounded-full bg-green-600'></span>Total Users</span>  
+
+                <span className='flex items-center gap-1'><span className='block w-[8px] h-[8px] rounded-full  bg-blue-600'></span>Total Sales</span>  
+            </div>
+           
+     <LineChart
+        width={1300}
+        height={500}
+        data={chart1Data}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" stroke='none' />
+        <XAxis dataKey="name" tick={{fontSize: 12}}/>
+        <YAxis tick={{fontSize: 12}}/>
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="TotalSales" stroke="#8884d8"  strokeWidth={3} activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="TotalUsers" stroke="#82ca9d" strokeWidth={3}/>
+      </LineChart>
         </div>
-        </div>
-        <div className="flex items-center justify-end pt-5 pb-5 px-4">
-                <Pagination count={10} color='[#3372fa] '/>
-        </div>
-        
-        
    
 
 
-      
+      </main>
     </>
   );
 };
