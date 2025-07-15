@@ -9,8 +9,30 @@ const addressSchema = mongoose.Schema({
         type: String,
         default: ""
     },
-    avatar: {
+    state: {
         type: String,
         default: ""
     },
-})
+    pincode: {
+        type: String,
+    },
+    country: {
+        type: String,
+    },
+    mobile: {
+        type: Number,
+        default: null
+    },
+    status: {
+        type: Boolean,
+        default: true
+    },
+    userId : {
+        type: mongoose.Schema.ObjectId,
+        default: ""
+    }
+}, { timestamps: true } )
+
+const addressModel = mongoose.model("User", addressSchema);
+
+export default addressModel;
