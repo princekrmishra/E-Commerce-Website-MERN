@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 
+import mongoose from "mongoose";
 const userSchema = mongoose.Schema({
     name: {
         type: String,
@@ -22,9 +22,9 @@ const userSchema = mongoose.Schema({
         type: Number,
         default: null
     },
-    refresh_token: {
-        type: String,
-        default: ""
+    verify_email: {
+        type: Boolean,
+        default: false
     },
     last_login_date: {
         type: Date,
@@ -56,7 +56,7 @@ const userSchema = mongoose.Schema({
     otp : {
         type: String,
     },
-    otp_expiry : {
+    otpExpires : {
         type: Date,
     },
     role: {
