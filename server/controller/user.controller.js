@@ -132,11 +132,31 @@ export async function loginUserController(request, response) {
     const user = await UserModel.findOne({ email: email });
 
     if(!user){
-        response.status(400).json({
+        return response.status(400).json({
             error: true,
             success: false,
             message: "User not registed"
         });
     }
-    
+
+    if(!user.status !== "Active"){
+        return response.status(400).json({
+            error: true,
+            success: false,
+            message: "Contact to admin"
+        });
+    }
+
+    const checkPassword = await bcryptjs.compare(password, user.password);
+
+    if(!checkPassword){
+        return response.status(400).json({
+            error: true,
+            success: false,
+            message: "Password is incorrect"
+        });
+    }
+
+    const accesstoken = await generatedAccessToken()
+    const refreshToken = await generatedRefreshToken()
 }
