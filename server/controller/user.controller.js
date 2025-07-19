@@ -297,10 +297,8 @@ export async function userAvatarController(request, response) {
                 image[i].path,
                 options,
                 function (error, result) {
-                    console.log(result)
                     imagesArr.push(result.secure_url);
                     fs.unlinkSync(`uploads/${request.files[i].filename }`);
-                    console.log(request.files[i].filename);
                 }
             );
         }

@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import connectDB from './config/connectDb.js';
 import userRouter from './routes/user.route.js';
+import categoryRouter from './routes/category.route.js';
 
 dotenv.config();
 
@@ -25,6 +26,8 @@ app.get('/', (req, res) => {
   res.json({ message: 'Running on ' + process.env.PORT });
 });
 app.use('/api/user', userRouter);
+app.use('/api/category', categoryRouter);
+
 
 connectDB().then(() => {
   app.listen(process.env.PORT, () => {

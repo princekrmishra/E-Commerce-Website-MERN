@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from 'mongoose';
 
 const categorySchema = mongoose.Schema({
     name: {
@@ -6,12 +6,20 @@ const categorySchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    quantity: {
-        type: Number,
-        default: 1
+    images: [
+        {
+            type: String,
+        }
+    ],
+    parentCatName: {
+        type: String,
     },
-    userId : {
-        type: mongoose.Schema.ObjectId,
-        ref: "User"
+    parentId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+        default: null
     }
 }, { timestamps: true } )
+
+const CategoryModel = mongoose.model('Category', categorySchema);
+export default CategoryModel;
