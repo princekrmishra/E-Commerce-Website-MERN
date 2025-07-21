@@ -8,7 +8,7 @@ import generatedRefreshToken from "../utils/generatedRefreshToken.js";
 
 import { v2 as cloudinary } from 'cloudinary';
 import fs, { access } from 'fs';
-import { error } from "console";
+
 
 
 cloudinary.config({ 
