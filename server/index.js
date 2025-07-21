@@ -9,6 +9,7 @@ import userRouter from './routes/user.route.js';
 import categoryRouter from './routes/category.route.js';
 import productRouter from './routes/product.route.js';
 import cartRouter from './routes/cart.route.js';
+import myListRouter from './routes/mylist.route.js';
 
 dotenv.config();
 
@@ -31,7 +32,7 @@ app.use('/api/user', userRouter);
 app.use('/api/category', categoryRouter);
 app.use('/api/product', productRouter);
 app.use('/api/cart', cartRouter);
-
+app.use('/api/myList', myListRouter);
 
 connectDB().then(() => {
   app.listen(process.env.PORT, () => {
